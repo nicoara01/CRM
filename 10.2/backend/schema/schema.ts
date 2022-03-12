@@ -1,4 +1,4 @@
-const graphql = require("graphql");
+import graphql = require("graphql");
 const {
   GraphQLString,
   GraphQLID,
@@ -7,7 +7,7 @@ const {
   GraphQLSchema,
 } = graphql;
 
-const { getCustomers } = require("../service/characterService");
+import { getCustomers } from "../service/customerService";
 
 // each object that we want to display, needs a type declaration
 const CustomerType = new GraphQLObjectType({
@@ -33,6 +33,8 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
-module.exports = new GraphQLSchema({
+const schema = new GraphQLSchema({
   query: RootQuery,
 });
+
+export default schema;

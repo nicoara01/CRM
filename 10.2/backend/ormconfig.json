@@ -5,7 +5,7 @@
   "username": "root",
   "password": "",
   "database": "crm",
-  "entities": ["entity/*.js"],
+  "entities": ["entity/*.ts"],
   "cli": {
     "entitiesDir": "entity"
   }
