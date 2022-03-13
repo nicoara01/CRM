@@ -7,7 +7,7 @@ const {
   GraphQLSchema,
 } = graphql;
 
-import { getCustomers } from "../service/customerService";
+import { getCustomers, createCustomer } from "../service/customerService";
 
 // each object that we want to display, needs a type declaration
 const CustomerType = new GraphQLObjectType({
@@ -16,7 +16,7 @@ const CustomerType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     address: { type: GraphQLString },
-    createdDate: { type: GraphQLString },
+    dateCreated: { type: GraphQLString },
   }),
 });
 
@@ -33,8 +33,22 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
+const RootMutation = new GraphQLObjectType({
+  name: "RootMutationType",
+  fields: {
+    createCustomer: {
+      type: CustomerType, // return the newly created customer
+      args: { name: { type: GraphQLString }, address: { type: GraphQLString } }, // we take the name and address as inputs
+      resolve(parent, args) {
+        return createCustomer(args.name, args.address);
+      },
+    },
+  },
+});
+
 const schema = new GraphQLSchema({
   query: RootQuery,
+  mutation: RootMutation,
 });
 
 export default schema;
