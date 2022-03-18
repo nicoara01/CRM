@@ -2,7 +2,6 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css"; // Imports CSS for bootstrap
 import { Container, Col, Row, Button, Modal } from "react-bootstrap"; // Imports bootstrap elements
 import { useState } from "react"; // import state from React
-import CreateCustomer from "./CreateCustomer";
 
 function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -30,7 +29,34 @@ function App() {
           </Button>
         </Col>
       </Row>
-      <CreateCustomer isModalVisible={isModalVisible} />
+
+      <Modal
+        show={isModalVisible}
+        onHide={() => {
+          // we simply call the setter with the new value as a parameter
+          setIsModalVisible(false);
+        }}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Create New Customer</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <p>Modal body text goes here.</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              setIsModalVisible(false);
+            }}
+          >
+            Close
+          </Button>
+          <Button variant="primary">Save changes</Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 }
