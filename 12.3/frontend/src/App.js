@@ -18,7 +18,12 @@ const GET_CUSTOMERS_QUERY = gql`
 
 function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const { loading, error, data } = useQuery(GET_CUSTOMERS_QUERY);
+  const {
+    loading,
+    error,
+    data,
+    refetch: refetchQuery,
+  } = useQuery(GET_CUSTOMERS_QUERY);
 
   return (
     <Container>
@@ -51,6 +56,7 @@ function App() {
       <CreateCustomer
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
+        refetchQuery={refetchQuery}
       />
     </Container>
   );

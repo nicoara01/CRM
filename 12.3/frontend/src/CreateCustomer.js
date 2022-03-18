@@ -1,6 +1,36 @@
-import { Button, Modal } from "react-bootstrap"; // Imports bootstrap elements
+import { Button, Modal, Form } from "react-bootstrap"; // Imports bootstrap elements
+import { useState } from "react"; // import state from React
+import { useMutation, gql } from "@apollo/client";
 
-function CreateCustomer({ isModalVisible, setIsModalVisible }) {
+const CREATE_CUSTOMER_MUTATION = gql`
+  mutation createCustomer($name: String, $address: String) {
+    createCustomer(name: $name, address: $address) {
+      id
+    }
+  }
+`;
+
+function CreateCustomer({ isModalVisible, setIsModalVisible, refetchQuery }) {
+  const [customerName, setCustomerName] = useState("");
+  const [customerAddress, setCustomerAddress] = useState("");
+
+  const [createCustomerMutation] = useMutation(CREATE_CUSTOMER_MUTATION);
+
+  const saveCustomer = () => {
+    createCustomerMutation({
+      variables: {
+        name: customerName,
+        address: customerAddress,
+      },
+    }).then(() => {
+      // reset data, and close modal
+      refetchQuery();
+      setCustomerName("");
+      setCustomerAddress("");
+      setIsModalVisible(false);
+    });
+  };
+
   return (
     <Modal
       show={isModalVisible}
@@ -14,7 +44,16 @@ function CreateCustomer({ isModalVisible, setIsModalVisible }) {
       </Modal.Header>
 
       <Modal.Body>
-        <p>Modal body text goes here.</p>
+        Name
+        <Form.Control
+          value={customerName}
+          onChange={(e) => setCustomerName(e.target.value)} // e is here an event, so we get the value of the change event
+        />
+        Address
+        <Form.Control
+          value={customerAddress}
+          onChange={(e) => setCustomerAddress(e.target.value)}
+        />
       </Modal.Body>
 
       <Modal.Footer>
@@ -26,7 +65,9 @@ function CreateCustomer({ isModalVisible, setIsModalVisible }) {
         >
           Close
         </Button>
-        <Button variant="primary">Save changes</Button>
+        <Button variant="primary" onClick={saveCustomer}>
+          Save changes
+        </Button>
       </Modal.Footer>
     </Modal>
   );
