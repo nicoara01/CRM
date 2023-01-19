@@ -47,11 +47,13 @@ function CreateCustomer({ isModalVisible, setIsModalVisible, refetchQuery }) {
         Name
         <Form.Control
           value={customerName}
+          className="customerName"
           onChange={(e) => setCustomerName(e.target.value)} // e is here an event, so we get the value of the change event
         />
         Address
         <Form.Control
           value={customerAddress}
+          className="customerAddress"
           onChange={(e) => setCustomerAddress(e.target.value)}
         />
       </Modal.Body>
