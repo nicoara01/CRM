@@ -41,7 +41,7 @@ const config = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
-    headless: false,
+    // headless: false,
   },
 
   /* Configure projects for major browsers */
@@ -52,7 +52,7 @@ const config = {
         ...devices["Desktop Chrome"],
       },
     },
-    {
+    /*{
       name: "firefox",
       use: {
         ...devices["Desktop Firefox"],
