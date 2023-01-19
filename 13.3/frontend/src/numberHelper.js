@@ -14,7 +14,6 @@ const addNumbers = (a, b) => {
 const totalNumber = () => {
   const amazonClients = apiCalls.amazonTotalClients();
   const ebayClients = apiCalls.ebayTotalClients();
-  console.log(amazonClients);
   const total = addNumbers(amazonClients, ebayClients);
 
   return `Our Total Number is ${total}`;

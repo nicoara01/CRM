@@ -14,7 +14,3 @@ export class Customer {
   @Column({ type: "date" })
   dateCreated: string;
 }
-let customerArray = [];
-for (let i = 0; i < customerArray.length; i++) {
-  return customer.name;
-}
