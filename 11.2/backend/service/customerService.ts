@@ -6,6 +6,10 @@ export async function getCustomers() {
   return createConnection()
     .then(async (connection) => {
       const customers = await connection.manager.find(Customer);
+
+      const comments = new Comment();
+      comments.save();
+
       connection.close();
 
       return customers;

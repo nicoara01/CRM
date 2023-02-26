@@ -2,7 +2,7 @@ import express = require("express");
 const app = express();
 import schema from "./schema/schema";
 import { graphqlHTTP } from "express-graphql";
-import cors from "cors";
+const cors = require("cors");
 
 app.use(cors());
 app.use(
