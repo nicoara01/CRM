@@ -1,0 +1,22 @@
+.client_border {
+  border: 1px solid black;
+}
+
+h2 {
+  margin: 20px 0 15px 0 !important;
+}
+
+.customer_card {
+  width: 330px;
+  float: left;
+  margin: 10px 10px 0 0;
+}
+
+.date_created_card {
+  color: grey;
+  font-size: 10px;
+}
+
+.customer_card button {
+  float: right;
+}
